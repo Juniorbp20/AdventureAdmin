@@ -1,5 +1,6 @@
 using System.Configuration;
 using AdventureAdmin.Data.Context;
+using AdventureAdmin.Ui.Product;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,7 +27,6 @@ static class Program
 
     private static void ConfigureServices(ServiceCollection services)
     {
-        // ✅ Leer desde App.config
         var connectionString = ConfigurationManager
             .ConnectionStrings["AdventureWorks"].ConnectionString;
 
@@ -34,5 +34,7 @@ static class Program
             options.UseSqlServer(connectionString));
 
         services.AddTransient<MainForm>();
+        services.AddTransient<ProductList>();
+        services.AddTransient<ProductForm>();
     }
 }

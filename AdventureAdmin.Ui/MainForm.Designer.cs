@@ -29,16 +29,34 @@ partial class MainForm
     private void InitializeComponent()
     {
         mainMenuStrip = new MenuStrip();
+        opcionesToolStripMenuItem = new ToolStripMenuItem();
+        productosToolStripMenuItem = new ToolStripMenuItem();
+        mainMenuStrip.SuspendLayout();
         SuspendLayout();
         // 
         // mainMenuStrip
         // 
         mainMenuStrip.ImageScalingSize = new Size(20, 20);
+        mainMenuStrip.Items.AddRange(new ToolStripItem[] { opcionesToolStripMenuItem });
         mainMenuStrip.Location = new Point(0, 0);
         mainMenuStrip.Name = "mainMenuStrip";
-        mainMenuStrip.Size = new Size(800, 24);
+        mainMenuStrip.Size = new Size(800, 28);
         mainMenuStrip.TabIndex = 0;
         mainMenuStrip.Text = "menuStrip1";
+        // 
+        // opcionesToolStripMenuItem
+        // 
+        opcionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { productosToolStripMenuItem });
+        opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
+        opcionesToolStripMenuItem.Size = new Size(85, 24);
+        opcionesToolStripMenuItem.Text = "Opciones";
+        // 
+        // productosToolStripMenuItem
+        // 
+        productosToolStripMenuItem.Name = "productosToolStripMenuItem";
+        productosToolStripMenuItem.Size = new Size(224, 26);
+        productosToolStripMenuItem.Text = "Productos";
+        productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
         // 
         // MainForm
         // 
@@ -49,6 +67,8 @@ partial class MainForm
         MainMenuStrip = mainMenuStrip;
         Name = "MainForm";
         Text = "Main Form";
+        mainMenuStrip.ResumeLayout(false);
+        mainMenuStrip.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -56,4 +76,6 @@ partial class MainForm
     #endregion
 
     private MenuStrip mainMenuStrip;
+    private ToolStripMenuItem opcionesToolStripMenuItem;
+    private ToolStripMenuItem productosToolStripMenuItem;
 }
