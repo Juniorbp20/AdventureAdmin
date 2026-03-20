@@ -2,10 +2,10 @@
 
 ## Pasos faltantes
 
-- Hacer fork 
+- Hacer Fork 
 - Clonar el fork
-- Hacer el branch ` git checkout -b issue/3_department`
-- Opcional hacer el merge `git fetch; git merge origin/master`
+- Hacer el branch `git checkout -b issue/13_location`
+- Opcional  hacer el merge `git fetch; git merge origin/master`
 
 ## Objetivo
 

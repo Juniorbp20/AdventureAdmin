@@ -65,14 +65,14 @@
             // 
             txtName.Location = new Point(167, 10);
             txtName.Name = "txtName";
-            txtName.Size = new Size(241, 23);
+            txtName.Size = new Size(227, 23);
             txtName.TabIndex = 2;
             // 
             // txtGroupName
             // 
             txtGroupName.Location = new Point(120, 39);
             txtGroupName.Name = "txtGroupName";
-            txtGroupName.Size = new Size(241, 23);
+            txtGroupName.Size = new Size(274, 23);
             txtGroupName.TabIndex = 3;
             txtGroupName.TextChanged += txtGroupName_TextChanged;
             // 
@@ -82,7 +82,7 @@
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnGuardar.ForeColor = Color.White;
-            btnGuardar.Location = new Point(12, 401);
+            btnGuardar.Location = new Point(2, 97);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(114, 37);
             btnGuardar.TabIndex = 4;
@@ -96,7 +96,7 @@
             btnCancelar.FlatStyle = FlatStyle.Popup;
             btnCancelar.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(144, 401);
+            btnCancelar.Location = new Point(132, 97);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(114, 37);
             btnCancelar.TabIndex = 5;
@@ -113,7 +113,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(442, 189);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
             Controls.Add(txtGroupName);
