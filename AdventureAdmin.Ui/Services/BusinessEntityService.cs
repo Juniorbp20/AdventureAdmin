@@ -8,14 +8,19 @@ namespace AdventureAdmin.Ui.Services;
 public class BusinessEntityService(AdventureWorksContext context
     ) : Aplicada1.Core.IService<Data.Models.BusinessEntity, int>
 {
-    public Task<BusinessEntity?> Buscar(int id)
+    public async Task<BusinessEntity?> Buscar(int id)
     {
-        throw new NotImplementedException();
+        return await context.BusinessEntities.FindAsync(id);
     }
 
-    public Task<bool> Eliminar(int id)
+    public async Task<bool> Eliminar(int id)
     {
-        throw new NotImplementedException();
+        var entidad = await context.BusinessEntities.FindAsync(id);
+        if (entidad == null) return false;
+
+        context.BusinessEntities.Remove(entidad);
+        var cantidad = await context.SaveChangesAsync();
+        return cantidad > 0;
     }
 
     public async Task<List<BusinessEntity>> GetList(Expression<Func<BusinessEntity, bool>> criterio)

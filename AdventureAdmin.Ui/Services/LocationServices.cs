@@ -7,14 +7,19 @@ namespace AdventureAdmin.Ui.Services;
 public class LocationServices(AdventureWorksContext context)
     : Aplicada1.Core.IService<Data.Models.Location, int>
 {
-    public Task<Data.Models.Location?> Buscar(int id)
+    public async Task<Data.Models.Location?> Buscar(int id)
     {
-        throw new NotImplementedException();
+        return await context.Locations.FindAsync(id);
     }
 
-    public Task<bool> Eliminar(int id)
+    public async Task<bool> Eliminar(int id)
     {
-        throw new NotImplementedException();
+        var ubicacion = await context.Locations.FindAsync(id);
+        if (ubicacion == null) return false;
+
+        context.Locations.Remove(ubicacion);
+        var cantidad = await context.SaveChangesAsync();
+        return cantidad > 0;
     }
 
     public async Task<List<Data.Models.Location>> GetList(Expression<Func<Data.Models.Location, bool>> criterio)

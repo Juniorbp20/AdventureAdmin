@@ -8,14 +8,19 @@ namespace AdventureAdmin.Ui.Services
     public class ContactTypeService(AdventureWorksContext context
         ) : Aplicada1.Core.IService<Data.Models.ContactType, int>
     {
-        public Task<ContactType?> Buscar(int id)
+        public async Task<ContactType?> Buscar(int id)
         {
-            throw new NotImplementedException();
+            return await context.ContactTypes.FindAsync(id);
         }
 
-        public Task<bool> Eliminar(int id)
+        public async Task<bool> Eliminar(int id)
         {
-            throw new NotImplementedException();
+            var tipo = await context.ContactTypes.FindAsync(id);
+            if (tipo == null) return false;
+
+            context.ContactTypes.Remove(tipo);
+            var cantidad = await context.SaveChangesAsync();
+            return cantidad > 0;
         }
 
         public async Task<List<ContactType>> GetList(Expression<Func<ContactType, bool>> criterio)

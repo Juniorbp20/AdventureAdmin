@@ -8,14 +8,19 @@ namespace AdventureAdmin.Ui.Services;
 public class ShipMethodServices(AdventureWorksContext context
     ) : Aplicada1.Core.IService<Data.Models.ShipMethod, int>
 {
-    public Task<ShipMethod?> Buscar(int id)
+    public async Task<ShipMethod?> Buscar(int id)
     {
-        throw new NotImplementedException();
+        return await context.ShipMethods.FindAsync(id);
     }
 
-    public Task<bool> Eliminar(int id)
+    public async Task<bool> Eliminar(int id)
     {
-        throw new NotImplementedException();
+        var ubicacion = await context.ShipMethods.FindAsync(id);
+        if (ubicacion == null) return false;
+
+        context.ShipMethods.Remove(ubicacion);
+        var cantidad = await context.SaveChangesAsync();
+        return cantidad > 0;
     }
 
     public async Task<List<ShipMethod>> GetList(Expression<Func<ShipMethod, bool>> criterio)

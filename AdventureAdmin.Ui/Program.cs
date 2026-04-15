@@ -58,8 +58,27 @@ static class Program
         services.AddTransient<PersonList>();
         services.AddTransient<PersonForm>();
 
+        
         //Services 
         services.AddTransient<CreditCardService>();
+        services.AddTransient<PersonService>();
+        services.AddTransient<DepartmentService>();
+        services.AddTransient<CreditCardService>();
+        services.AddTransient<ProductCategoryService>();
+        services.AddTransient<CurrencyService>();
+        services.AddTransient<ShiftService>();
+        services.AddTransient<CountryRegionService>();
+        services.AddTransient<ShipMethodServices>();
+        services.AddTransient<PhoneNumberTypeService>();
+        services.AddTransient<ProductDescripctionService>();
+        services.AddTransient<addressTypeService>();
+        services.AddTransient<BusinessEntityService>();
+        services.AddTransient<LocationServices>();
+        services.AddTransient<SpecialOfferService>();
+        services.AddTransient<CultureService>();
+        services.AddTransient<PersonService>();
+        services.AddTransient<ContactTypeService>();
+        services.AddTransient<ScrapReasonService>();
     }
 }
 

@@ -8,14 +8,19 @@ namespace AdventureAdmin.Ui.Services
     public class CultureService(AdventureWorksContext context)
          : Aplicada1.Core.IService<Data.Models.Culture, string>
     {
-        public Task<Culture?> Buscar(string id)
+        public async Task<Culture?> Buscar(string id)
         {
-            throw new NotImplementedException();
+            return await context.Cultures.FindAsync(id);
         }
 
-        public Task<bool> Eliminar(string id)
+        public async Task<bool> Eliminar(string id)
         {
-            throw new NotImplementedException();
+            var cultura = await context.Cultures.FindAsync(id);
+            if (cultura == null) return false;
+
+            context.Cultures.Remove(cultura);
+            var cantidad = await context.SaveChangesAsync();
+            return cantidad > 0;
         }
 
         public async Task<List<Culture>> GetList(Expression<Func<Culture, bool>> criterio)

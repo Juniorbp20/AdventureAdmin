@@ -8,14 +8,19 @@ namespace AdventureAdmin.Ui.Services;
 public class ProductDescripctionService(AdventureWorksContext context
     ) : Aplicada1.Core.IService<Data.Models.ProductDescription, int>
 {
-    public Task<ProductDescription?> Buscar(int id)
+    public async Task<ProductDescription?> Buscar(int id)
     {
-        throw new NotImplementedException();
+        return await context.ProductDescriptions.FindAsync(id);
     }
 
-    public Task<bool> Eliminar(int id)
+    public async Task<bool> Eliminar(int id)
     {
-        throw new NotImplementedException();
+        var ubicacion = await context.ProductDescriptions.FindAsync(id);
+        if (ubicacion == null) return false;
+
+        context.ProductDescriptions.Remove(ubicacion);
+        var cantidad = await context.SaveChangesAsync();
+        return cantidad > 0;
     }
 
     public async Task<List<ProductDescription>> GetList(Expression<Func<ProductDescription, bool>> criterio)

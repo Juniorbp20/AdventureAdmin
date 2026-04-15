@@ -9,14 +9,19 @@ public class ShiftService(AdventureWorksContext context
     ) : Aplicada1.Core.IService<Shift, int>
 
 {
-    public Task<Shift?> Buscar(int id)
+    public async Task<Shift?> Buscar(int id)
     {
-        throw new NotImplementedException();
+        return await context.Shifts.FindAsync(id);
     }
 
-    public Task<bool> Eliminar(int id)
+    public async Task<bool> Eliminar(int id)
     {
-        throw new NotImplementedException();
+        var ubicacion = await context.Shifts.FindAsync(id);
+        if (ubicacion == null) return false;
+
+        context.Shifts.Remove(ubicacion);
+        var cantidad = await context.SaveChangesAsync();
+        return cantidad > 0;
     }
 
     public async Task<List<Shift>> GetList(Expression<Func<Shift, bool>> criterio)

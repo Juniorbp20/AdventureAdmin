@@ -9,14 +9,19 @@ public class CurrencyService(
     AdventureWorksContext context
     ) : Aplicada1.Core.IService<Currency, string>
 {
-    public Task<Currency?> Buscar(string id)
+    public async Task<Currency?> Buscar(string id)
     {
-        throw new NotImplementedException();
+        return await context.Currencies.FindAsync(id);
     }
 
-    public Task<bool> Eliminar(string id)
+    public async Task<bool> Eliminar(string id)
     {
-        throw new NotImplementedException();
+        var ubicacion = await context.Currencies.FindAsync(id);
+        if (ubicacion == null) return false;
+
+        context.Currencies.Remove(ubicacion);
+        var cantidad = await context.SaveChangesAsync();
+        return cantidad > 0;
     }
 
     public async Task<List<Data.Models.Currency>> GetList(Expression<Func<Data.Models.Currency, bool>> criterio)

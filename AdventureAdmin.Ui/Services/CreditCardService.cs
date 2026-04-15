@@ -17,14 +17,19 @@ public class CreditCardService(
         return cantidad > 0;
     }
 
-    public Task<Data.Models.CreditCard?> Buscar(int id)
+    public async Task<Data.Models.CreditCard?> Buscar(int id)
     {
-        throw new NotImplementedException();
+        return await context.CreditCards.FindAsync(id);
     }
 
-    public Task<bool> Eliminar(int id)
+    public async Task<bool> Eliminar(int id)
     {
-        throw new NotImplementedException();
+        var region = await context.CreditCards.FindAsync(id);
+        if (region == null) return false;
+
+        context.CreditCards.Remove(region);
+        var cantidad = await context.SaveChangesAsync();
+        return cantidad > 0;
     }
 
     public async Task<List<Data.Models.CreditCard>> GetList(Expression<Func<Data.Models.CreditCard, bool>> criterio)

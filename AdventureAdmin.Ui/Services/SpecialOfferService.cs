@@ -7,15 +7,20 @@ namespace AdventureAdmin.Ui.Services;
 public class SpecialOfferService(AdventureWorksContext context
     ) : Aplicada1.Core.IService<Data.Models.SpecialOffer, int>
 {
-    public Task<SpecialOffer?> Buscar(int id)
+    public async Task<SpecialOffer?> Buscar(int id)
     {
-        throw new NotImplementedException();
+        return await context.SpecialOffers.FindAsync(id);
     }
 
-    public Task<bool> Eliminar(int id)
+    public async Task<bool> Eliminar(int id)
     {
-        
-        throw new NotImplementedException();
+
+        var ubicacion = await context.SpecialOffers.FindAsync(id);
+        if (ubicacion == null) return false;
+
+        context.SpecialOffers.Remove(ubicacion);
+        var cantidad = await context.SaveChangesAsync();
+        return cantidad > 0;
     }
 
     public Task<List<SpecialOffer>> GetList(Expression<Func<SpecialOffer, bool>> criterio)

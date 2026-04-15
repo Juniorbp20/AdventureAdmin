@@ -7,14 +7,19 @@ namespace AdventureAdmin.Ui.Services
     public class ScrapReasonService(AdventureWorksContext context)
          : Aplicada1.Core.IService<Data.Models.ScrapReason, string>
     {
-        public Task<Data.Models.ScrapReason?> Buscar(string id)
+        public async Task<Data.Models.ScrapReason?> Buscar(string id)
         {
-            throw new NotImplementedException();
+            return await context.ScrapReasons.FindAsync(id);
         }
 
-        public Task<bool> Eliminar(string id)
+        public async Task<bool> Eliminar(string id)
         {
-            throw new NotImplementedException();
+            var ubicacion = await context.ScrapReasons.FindAsync(id);
+            if (ubicacion == null) return false;
+
+            context.ScrapReasons.Remove(ubicacion);
+            var cantidad = await context.SaveChangesAsync();
+            return cantidad > 0;
         }
 
         public async Task<List<Data.Models.ScrapReason>> GetList(Expression<Func<Data.Models.ScrapReason, bool>> criterio)
